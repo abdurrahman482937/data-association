@@ -77,7 +77,7 @@ function isLoggedIn(req, res, next) {
     req.user = data;
     next();
   }
-}
+};
 
 app.listen(port, () => {
   console.log(`app listening at http://localhost:${port}`);
