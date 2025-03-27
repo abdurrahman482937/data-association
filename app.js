@@ -41,7 +41,7 @@ app.post("/register", async (req, res) => {
   });
 });
 
-app.get("/login", isLoggedIn, (req, res) => {
+app.get("/login", (req, res) => {
   res.render("login");
 });
 
@@ -52,9 +52,16 @@ app.post("/login", async (req, res) => {
   if (!user) return res.status(401).send("Something went wrong!");
 
   bcrypt.compare(password, user.password, (err, result) => {
-    if (result) res.status(200).send("you can login");
-    else res.redirect("/");
+    if (result) {
+      let token = jwt.sign({ email, userid: user._id }, "secret");
+      res.cookie("token", token);
+      res.status(200).send("you can login");
+    } else res.redirect("/");
   });
+});
+
+app.get("/profile", isLoggedIn, (req, res) => {
+  res.render("login");
 });
 
 app.get("/logout", (req, res) => {
@@ -63,8 +70,13 @@ app.get("/logout", (req, res) => {
 });
 
 function isLoggedIn(req, res, next) {
-  console.log(req.cookies);
-  next();
+  if (req.cookies.token === "") {
+    res.send("user must be logged In");
+  } else {
+    let data = jwt.verify(req.cookies.token, "secret");
+    req.user = data;
+    next();
+  }
 }
 
 app.listen(port, () => {
