@@ -55,13 +55,16 @@ app.post("/login", async (req, res) => {
     if (result) {
       let token = jwt.sign({ email, userid: user._id }, "secret");
       res.cookie("token", token);
-      res.status(200).send("you can login");
+      res.status(200).redirect("/profile");
     } else res.redirect("/");
   });
 });
 
-app.get("/profile", isLoggedIn, (req, res) => {
-  res.render("login");
+app.get("/profile", isLoggedIn, async (req, res) => {
+  let user = await userModel.findOne({ email: req.user.email });
+  console.log(user);
+  
+  res.render("profile", {user});
 });
 
 app.get("/logout", (req, res) => {
@@ -70,14 +73,18 @@ app.get("/logout", (req, res) => {
 });
 
 function isLoggedIn(req, res, next) {
-  if (req.cookies.token === "") {
-    res.send("user must be logged In");
-  } else {
+  const token = req.cookies.token;
+  if (!token) {
+    res.redirect("/login");
+  }
+  try {
     let data = jwt.verify(req.cookies.token, "secret");
     req.user = data;
     next();
+  } catch (err) {
+    return res.status(403).send("Invalid Token!");
   }
-};
+}
 
 app.listen(port, () => {
   console.log(`app listening at http://localhost:${port}`);
