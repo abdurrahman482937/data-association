@@ -7,29 +7,28 @@
     <title>Document</title>
   </head>
   <body class="h-screen w-full bg-zinc-900 text-white">
-    <div class="flex flex-col items-start p-6">
-      <h1 class="text-3xl font-normal leading-7 tracking-widest">
-        <span class="font-light">Hello</span>, <%= user.name %> 👋
-      </h1>
-      <h4 class="tracking-tighter font-mono">you can create a post.</h4>
-      <form
-        action="/create-post"
-        method="POST"
-        class="mt-4 w-full flex flex-col"
-      >
-        <textarea
-          name="content"
-          placeholder="What's on your mind?"
-          class="w-96 p-2 bg-zinc-800 text-white rounded-md resize-none focus:outline-none focus:ring-1"
-          rows="2"
-        ></textarea>
-        <button
-          type="submit"
-          class="w-40 mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
-        >
-          Post
-        </button>
-      </form>
+    <div class="flex flex-col justify-between items-stretch p-6">
+      <a href="/logout" class="text-right">Logout</a>
+      <div>
+        <h1 class="text-3xl font-normal leading-7 tracking-widest">
+          <span class="font-light">Hello</span>, <%= user.name %> 👋
+        </h1>
+        <h4 class="tracking-tighter font-mono">you can create a post.</h4>
+        <form action="/profile" method="POST" class="mt-4 w-full flex flex-col">
+          <textarea
+            name="content"
+            placeholder="What's on your mind?"
+            class="w-96 p-2 bg-zinc-800 text-white rounded-md resize-none focus:outline-none focus:ring-1"
+            rows="2"
+          ></textarea>
+          <button
+            type="submit"
+            class="w-40 mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          >
+            Post
+          </button>
+        </form>
+      </div>
     </div>
   </body>
 </html>
