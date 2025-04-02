@@ -14,7 +14,7 @@
           <span class="font-light">Hello</span>, <%= user.name %> 👋
         </h1>
         <h4 class="tracking-tighter font-mono">you can create a post.</h4>
-        <form action="/profile" method="POST" class="mt-4 w-full flex flex-col">
+        <form action="/post" method="post" class="mt-4 w-full flex flex-col">
           <textarea
             name="content"
             placeholder="What's on your mind?"
@@ -31,7 +31,7 @@
       </div>
       <div class="posts mt-20">
         <h2 class="text-zinc-400">Your Posts.</h2>
-        <div class="post-container mt-3  grid grid-cols-3 gap-5 pr-20">
+        <div class="post-container mt-3 grid grid-cols-3 gap-5 pr-20">
           <div class="post p-5 border-[1px] border-zinc-800">
             <h4 class="text-blue-500 text-sm">@abdurrahman482937</h4>
             <p class="mt-2 text-[15px] tracking-tight">
