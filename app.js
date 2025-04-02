@@ -70,9 +70,18 @@ app.get("/profile", isLoggedIn, async (req, res) => {
 
 app.get("/like/:id", isLoggedIn, async (req, res) => {
   let post = await postModel.findOne({ _id: req.params.id }).populate("user");
-  post.likes.push(req.user.userid);
+  if (post.likes.indexOf(req.user.userid === -1)) {
+    post.likes.push(req.user.userid);
+  } else {
+    post.likes.splice(post.likes.indexOf(req.user.userid), 1);
+  }
   await post.save();
   res.redirect("/profile");
+});
+
+app.get("/edit/:id", isLoggedIn, async (req, res) => {
+  let post = await postModel.findOne({ _id: req.params.id }).populate("user");
+  res.render("edit", {post});
 });
 
 app.post("/post", isLoggedIn, async (req, res) => {
