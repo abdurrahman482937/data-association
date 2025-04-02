@@ -9,6 +9,7 @@ const port = 3000;
 
 const userModel = require("./models/user");
 const postModel = require("./models/post");
+const { default: mongoose } = require("mongoose");
 
 app.set("view engine", "ejs");
 app.use(express.json());
