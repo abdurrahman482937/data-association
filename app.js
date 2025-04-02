@@ -79,9 +79,14 @@ app.get("/like/:id", isLoggedIn, async (req, res) => {
   res.redirect("/profile");
 });
 
+app.post("/update/:id", isLoggedIn, async (req, res) => {
+  let post = await postModel.findByIdAndUpdate({ _id: req.params.id }, {content: req.body.content});
+  res.redirect("/profile");
+});
+
 app.get("/edit/:id", isLoggedIn, async (req, res) => {
   let post = await postModel.findOne({ _id: req.params.id }).populate("user");
-  res.render("edit", {post});
+  res.render("edit", { post });
 });
 
 app.post("/post", isLoggedIn, async (req, res) => {

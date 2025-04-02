@@ -37,12 +37,11 @@
             <h4 class="text-blue-500 text-sm font-mono">
               @<%= user.username %>
             </h4>
-            <p class="mt-2 text-[15px] tracking-tight">
-              <%= post.content %>
-            </p>
-            <div class="btns flex mt-3 gap-5">
-              <a href="" class="text-blue-500">Like</a>
-              <a href="" class="text-zinc-500">edit</a>
+            <p class="mt-2 text-[15px] tracking-tight"><%= post.content %></p>
+            <p class="mt-3 text-sm"><%= post.likes.length %> Likes</p>
+            <div class="btns flex mt-1 gap-5">
+              <a href="/like/<%= post._id %>" class="text-blue-500">Like</a>
+              <a href="/edit/<%= post._id %>" class="text-zinc-500">edit</a>
             </div>
           </div>
           <% }) %>

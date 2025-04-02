@@ -11,7 +11,7 @@
       <a href="/logout" class="text-right">Logout</a>
       <div>
         <h4 class="tracking-tighter font-mono">edit your post.</h4>
-        <form action="/post" method="post" class="mt-4 w-full flex flex-col">
+        <form action="/update/<%= post._id %>" method="post" class="mt-4 w-full flex flex-col">
           <textarea
             name="content"
             placeholder="What's on your mind?"
