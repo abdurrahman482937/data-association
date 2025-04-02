@@ -32,45 +32,20 @@
       <div class="posts mt-20">
         <h2 class="text-zinc-400">Your Posts.</h2>
         <div class="post-container mt-3 grid grid-cols-3 gap-5 pr-20">
+          <% user.posts.reverse().forEach(post => { %>
           <div class="post p-5 border-[1px] border-zinc-800">
-            <h4 class="text-blue-500 text-sm">@abdurrahman482937</h4>
+            <h4 class="text-blue-500 text-sm font-mono">
+              @<%= user.username %>
+            </h4>
             <p class="mt-2 text-[15px] tracking-tight">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Deserunt, fugiat iste! Quo debitis porro deserunt dolorum
-              laudantium atque dicta, animi culpa aperiam quisquam facere,
-              consectetur reiciendis odio, blanditiis ratione obcaecati!
+              <%= post.content %>
             </p>
             <div class="btns flex mt-3 gap-5">
               <a href="" class="text-blue-500">Like</a>
               <a href="" class="text-zinc-500">edit</a>
             </div>
           </div>
-          <div class="post p-5 border-[1px] border-zinc-800">
-            <h4 class="text-blue-500 text-sm">@abdurrahman482937</h4>
-            <p class="mt-2 text-[15px] tracking-tight">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Deserunt, fugiat iste! Quo debitis porro deserunt dolorum
-              laudantium atque dicta, animi culpa aperiam quisquam facere,
-              consectetur reiciendis odio, blanditiis ratione obcaecati!
-            </p>
-            <div class="btns flex mt-3 gap-5">
-              <a href="" class="text-blue-500">Like</a>
-              <a href="" class="text-zinc-500">edit</a>
-            </div>
-          </div>
-          <div class="post p-5 border-[1px] border-zinc-800">
-            <h4 class="text-blue-500 text-sm">@abdurrahman482937</h4>
-            <p class="mt-2 text-[15px] tracking-tight">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Deserunt, fugiat iste! Quo debitis porro deserunt dolorum
-              laudantium atque dicta, animi culpa aperiam quisquam facere,
-              consectetur reiciendis odio, blanditiis ratione obcaecati!
-            </p>
-            <div class="btns flex mt-3 gap-5">
-              <a href="" class="text-blue-500">Like</a>
-              <a href="" class="text-zinc-500">edit</a>
-            </div>
-          </div>
+          <% }) %>
         </div>
       </div>
     </div>
